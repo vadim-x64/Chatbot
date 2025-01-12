@@ -3,6 +3,7 @@ package com.example.demo.components;
 import com.example.demo.entities.History;
 import com.example.demo.interfaces.HistoryRepos;
 import com.example.demo.properties.Keyboard;
+import com.example.demo.properties.MessageLoader;
 import com.example.demo.properties.Properties;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
@@ -22,7 +23,7 @@ import java.util.List;
 @AllArgsConstructor
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
-    private final Properties c;
+    private final Properties properties;
     private final MarksButton marksButton;
     private final HistoryRepos historyRepos;
     private final CategoryButton categoryButton;
@@ -31,12 +32,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return c.getBotName();
+        return properties.getBotName();
     }
 
     @Override
     public String getBotToken() {
-        return c.getBotToken();
+        return properties.getBotToken();
     }
 
     @Override
@@ -114,20 +115,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void sendStartMessage(long chatId, String username) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
-        message.setText(
-                "Привіт, " + username + " \uD83D\uDC4B\n\n" +
-                        "Мене звати `AutoBot`. Я Ваш ментор у світі автомобілів. Тут Ви знайдете інформаційно-навчальний " +
-                        "та якісний контент про авто. Моя мета - не лише допомогти Вам розібратися " +
-                        "в основах автомобільної техніки, але й закріпити знання та відкрити для Вас величезний світ " +
-                        "автомобільної індустрії.\n\n" +
-                        "Надаю інформацію по будові авто, і, звичайно, пояснюю " +
-                        "загальний принцип роботи. Більше того, Ви побачите справжні шедеври автопрому - потужні та " +
-                        "ексклюзивні автомобілі від відомих світових виробників.\n\n" +
-                        "Нижче розташована панель з кількома опціями. Ви можете ними користуватися, " +
-                        "наприклад, натиснувши на одну з них, і Вам відкриється відповідне меню. " +
-                        "Вони будуть доступні постійно, та навіть можна натиснути з правого боку іконку, щоб їх скрити.\n\n" +
-                        "При кожному введені /start, вони будуть нагадувати про своє існування. " +
-                        "Таким чином Ви маєте можливість без зайвих кроків отримувати доступ до них \uD83D\uDC47");
+        message.setText("Привіт, " + username + MessageLoader.getMessage("telegram_info1"));
         Keyboard keyboardBuilder = new Keyboard();
         ReplyKeyboardMarkup keyboardMarkup = keyboardBuilder.buildKeyboard();
         keyboardMarkup.setOneTimeKeyboard(false);
@@ -143,8 +131,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void sendRestartMessage(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
-        message.setText(
-                "`AutoBot` до Ваших послуг. Я знову готовий до роботи!\n\nБудь ласка, оберіть опцію \uD83D\uDC47");
+        message.setText(MessageLoader.getMessage("telegram_info2"));
         Keyboard keyboardBuilder = new Keyboard();
         ReplyKeyboardMarkup keyboardMarkup = keyboardBuilder.buildKeyboard();
         keyboardMarkup.setOneTimeKeyboard(false);
@@ -160,63 +147,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void sendForumMessage(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
-        message.setText(
-                """
-                *Керівництво користувача* \uD83D\uDCCB
-    
-                Як правило, до будь-якої системи або програми існує певний, \
-                скажімо так, перелік або набір правил та інструкцій щодо \
-                експлуатації програмного продукту. У випадку з ботами це не є \
-                виключенням, тому в даному розділі Ви, як користувач \
-                бота і `Telegram` в цілому, маєте змогу вивчити його головне призначення \
-                і, безпосередньо, навчитися взаємодіяти з ним, щоб користуватися програмою \
-                було ефективно та зручно.
-    
-                Перегляньте наступні пункти \uD83D\uDC47
-    
-                /start → базова команда `Telegram`, яку може викликати \
-                користувач для початку взаємодії з ботом. Вона запрограмована таким чином, \
-                що коли Ви відправляєте її боту, то Вам стане доступна клавіатура, з основними кнопками програми. \
-                Якщо випадковим чином видалити повідомлення - кнопки скриються. Активувати їх можна \
-                таким же способом, ввівши наново цей запит.
-    
-                /restart → призначена перезапускати бота. Тобто, якщо Ви почистили історію бота, \
-                то просто зайдіть у меню, і натисніть на цю опцію. Вам знову стане доступна клавіатура.
-    
-                /references → надаються корисні посилання на інтернет-джерела та літературу. \
-                Ви можете переглядати відео в інтернеті у вигляді 3D-анімацій та наочно бачити \
-                принцип роботи кожної деталі. А також знаходити опис того чи іншого механізму.
-    
-                /history → виступає у ролі запиту, що надає дані про початок розвитку першого авто і \
-                завершуючи сучасними тенденціями. Описано все доволі коротко, \
-                а більш детальні відомості можна знайти за посиланням, яке також там вказано.
-    
-                Стосовно клавіатури, то це головний інструмент з вивчення автомобіля. В ньому \
-                нічого складного немає, тобто Ви просто тиснете по кнопках, читаєте опис відкритого \
-                меню і спокійно вивчаєте матеріал. Він доступний, без обмежень та написаний в оригіналі \
-                (тобто не просто `COPY + PASTE` з інтернету). \
-                Вся інформація перевірена та носить достовірний характер.\
-    
-                
-                Ознайомтеся з клавішами нижче \uD83D\uDC47
-    
-                \uD83D\uDDC2 `КАТЕГОРІЇ` → зібрані відомі світові моделі машин, що розбиті по категоріях. \
-                Можуть містити опис, фото та відео.
-    
-                ⚙️ `ПРИНЦИП РОБОТИ` → частина, де чітко та обгрунтовано надано \
-                загальний принцип роботи автомобіля.
-    
-                🔤️ `МАРКИ` → висунуто найпопулярніші та найкрутіші марки транспорту, \
-                роки та країни їх заснування. Також додано короткий опис до них.
-    
-                \uD83D\uDD29 `БУДОВА` → значуща категорія, адже містить досить багато різних \
-                характеристик та медіа матеріалів стосовно принципу роботи та архітектури авто. \
-                Все поділено по розділах. Підготовлено зрозумілий та чітко обгрунтований \
-                вміст.
-    
-                На завершення треба додати, що в кожному такому меню є кнопка `Закрити`, \
-                при натисненні на яку, Ви закриєте відповідно відкритий розділ. Це зроблено для зручності \
-                навігації та щоб не залишати повідомлень у чаті \uD83D\uDE09""");
+        message.setText(MessageLoader.getMessage("telegram_info3"));
         message.enableMarkdown(true);
         message.setReplyMarkup(Keyboard.createCloseButtonKeyboard());
         try {
@@ -229,34 +160,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void sendReferencesMessage(long chatId) {
         SendMessage message = new SendMessage();
         message.setChatId(String.valueOf(chatId));
-        message.setText(
-                "_Шановні автолюбителі_ \uD83E\uDD1F\n\n" +
-                        "Сподіваюсь, Вам подобаються публікації, " +
-                        "які Ви отримуєте в цій програмі. І вони приносять користь, а саме дають зрозуміти, " +
-                        "які бувають машини та як вони працюють. Розумію що, можливо, не відразу все можна сприйняти " +
-                        "та зрозуміти як саме все відбувається. Тому, саме для Вас маю невеличкий посібник з посиланнями " +
-                        "на інтернет-ресурси, де Ви матимете змогу наочно бачити як працює кожна деталь певного механізму " +
-                        "автомобіля.\n\n" +
-                        "Інформаційні дані подано у вигляді 3D-анімацій. А також є 2 вебсайти, де все чітко " +
-                        "та структуровано поділено по розділах.\n\n" +
-                        "\uD83D\uDC49\u2063 https://green-way.com.ua/uk\n" +
-                        "_вебсайт_ `GREEN-WAY`_ надає довідники, тести ПДР, новини і т. д._\n\n" +
-                        "\uD83D\uDC49 https://automotive-heritage.com/\n" +
-                        "_вебсайт_ `Автомобільна Спадщина` _пропонує типи та види авто, марки, будову і т. п._\n\n" +
-                        "_Матеріали, що містять відео, подано англійською мовою. " +
-                        "Відео, що вказані за цими посиланнями розміщенні на платформі_ `YouTube`\n\n" +
-                        "\uD83D\uDC49 https://www.youtube.com/watch?v=nC6fsNXdcMQ\n" +
-                        "_анімація, як працює диференціал_\n\n" +
-                        "\uD83D\uDC49 https://www.youtube.com/watch?v=vRZu3-64yo0\n" +
-                        "_анімація, як працює система охолодження_\n\n" +
-                        "\uD83D\uDC49 https://www.youtube.com/watch?v=PmQnV1oxfe8\n" +
-                        "_анімація, як працює зчеплення_\n\n" +
-                        "\uD83D\uDC49 https://www.youtube.com/watch?v=wCu9W9xNwtI\n" +
-                        "_механічна коробка передач_\n\n" +
-                        "\uD83D\uDC49 https://www.youtube.com/watch?v=ZQvfHyfgBtA\n" +
-                        "_ДВЗ та його робота (частина 1)_\n\n" +
-                        "\uD83D\uDC49 https://www.youtube.com/watch?v=ASSsg8hcQjM\n" +
-                        "_ДВЗ та його робота (частина 2)_");
+        message.setText(MessageLoader.getMessage("telegram_info4"));
         message.enableMarkdown(true);
         message.disableWebPagePreview();
         message.setReplyMarkup(Keyboard.createCloseButtonKeyboard());
