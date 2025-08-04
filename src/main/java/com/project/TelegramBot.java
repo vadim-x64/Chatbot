@@ -42,6 +42,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                     _commandHandler.handleStartCommand(chatId, user);
                 } else if (messageText.equals("/restart")) {
                     _commandHandler.handleStartCommand(chatId, user);
+                } else if (messageText.equals("Основи") ||
+                        messageText.equals("Будова") ||
+                        messageText.equals("Історія")) {
+                    _commandHandler.handleCategoryCommand(chatId, messageText);
                 } else {
                     _commandHandler.handleUnknownMessage(chatId);
                 }

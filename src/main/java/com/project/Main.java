@@ -8,6 +8,7 @@ public class Main {
         try {
             BotInitializer botInitializer = new BotInitializer();
             botInitializer.initializeBot();
-        } catch (TelegramApiException ignored) {}
+        } catch (TelegramApiException ignored) {
+        }
     }
 }
