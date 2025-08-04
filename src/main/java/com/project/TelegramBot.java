@@ -46,6 +46,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                         messageText.equals("Будова") ||
                         messageText.equals("Історія")) {
                     _commandHandler.handleCategoryCommand(chatId, messageText);
+                } else if (messageText.equals("Повернутися назад")) {
+                    _commandHandler.handleReturnBackButton(chatId);
                 } else {
                     _commandHandler.handleUnknownMessage(chatId);
                 }

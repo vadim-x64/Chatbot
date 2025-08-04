@@ -26,7 +26,17 @@ public class CommandHandler {
     }
 
     public void handleCategoryCommand(long chatId, String category) {
-        String responseText = "Ви відкрили категорію " + category;
-        _messageService.sendMessage(chatId, responseText);
+        if (category.equals("Основи")) {
+            String responseText = "Дана категорія містить інформацію про основи керування та роботу автомобіля.";
+            _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getBasicsKeyboardMarkup());
+        } else {
+            String responseText = "Ви відкрили категорію " + category;
+            _messageService.sendMessage(chatId, responseText);
+        }
+    }
+
+    public void handleReturnBackButton(long chatId) {
+        String responseText = "Ви повернулися до головного меню. Оберіть категорію нижче.";
+        _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getMainKeyboardMarkup());
     }
 }
