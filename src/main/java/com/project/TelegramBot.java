@@ -38,9 +38,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             if (update.getMessage().hasText()) {
                 String messageText = update.getMessage().getText();
 
-                if (messageText.equals("/start")) {
-                    _commandHandler.handleStartCommand(chatId, user);
-                } else if (messageText.equals("/restart")) {
+                if (messageText.equals("/start") || messageText.equals("/restart")) {
                     _commandHandler.handleStartCommand(chatId, user);
                 } else if (messageText.equals("Основи") ||
                         messageText.equals("Будова") ||
