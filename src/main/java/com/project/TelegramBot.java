@@ -10,12 +10,11 @@ import org.telegram.telegrambots.meta.api.objects.User;
 public class TelegramBot extends TelegramLongPollingBot {
 
     private final BotConfig _botConfig;
-    private final MessageService _messageService;
     private final CommandHandler _commandHandler;
 
     public TelegramBot() {
         _botConfig = new BotConfig();
-        _messageService = new MessageService(this);
+        MessageService _messageService = new MessageService(this);
         _commandHandler = new CommandHandler(_messageService);
     }
 
@@ -38,16 +37,11 @@ public class TelegramBot extends TelegramLongPollingBot {
             if (update.getMessage().hasText()) {
                 String messageText = update.getMessage().getText();
 
-                if (messageText.equals("/start") || messageText.equals("/restart")) {
-                    _commandHandler.handleStartCommand(chatId, user);
-                } else if (messageText.equals("Основи") ||
-                        messageText.equals("Будова") ||
-                        messageText.equals("Історія")) {
-                    _commandHandler.handleCategoryCommand(chatId, messageText);
-                } else if (messageText.equals("Повернутися назад")) {
-                    _commandHandler.handleReturnBackButton(chatId);
-                } else {
-                    _commandHandler.handleUnknownMessage(chatId);
+                switch (messageText) {
+                    case "/start", "/restart" -> _commandHandler.handleStartCommand(chatId, user);
+                    case "Основи", "Будова", "Історія" -> _commandHandler.handleCategoryCommand(chatId, messageText);
+                    case "Повернутися назад" -> _commandHandler.handleReturnBackButton(chatId);
+                    default -> _commandHandler.handleUnknownMessage(chatId);
                 }
             } else {
                 _commandHandler.handleUnknownMessage(chatId);
