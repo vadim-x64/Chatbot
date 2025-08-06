@@ -11,6 +11,8 @@ COPY . .
 
 RUN mvn clean package -DskipTests
 
-EXPOSE 8080
+RUN ls -la target/
 
-CMD ["java", "-jar", "target/chatbot-1.0-SNAPSHOT-shaded.jar"]
+RUN find target -name "*.jar" -not -name "*original*" -exec cp {} app.jar \;
+
+CMD ["java", "-jar", "app.jar"]
