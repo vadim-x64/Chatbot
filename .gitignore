@@ -45,3 +45,6 @@ guide.txt
 
 # json phrases
 src/main/resources/json
+
+# assets
+src/main/resources/images
