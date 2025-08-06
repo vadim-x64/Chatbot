@@ -41,3 +41,7 @@ build/
 .env
 
 # files
+guide.txt
+
+# json phrases
+src/main/resources/json

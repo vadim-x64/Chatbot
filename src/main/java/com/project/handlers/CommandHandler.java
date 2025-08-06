@@ -1,5 +1,6 @@
 package com.project.handlers;
 
+import com.project.services.JsonService;
 import com.project.services.KeyboardService;
 import com.project.services.MessageService;
 import org.telegram.telegrambots.meta.api.objects.User;
@@ -16,27 +17,46 @@ public class CommandHandler {
 
     public void handleStartCommand(long chatId, User user) {
         String username = user.getUserName() != null ? user.getUserName() : user.getFirstName();
-        String responseText = "Мої вітання, @" + username + ".";
+        String responseText = JsonService.getTextWithPlaceholder("basePhrases", "greeting", "username", username);
         _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getMainKeyboardMarkup());
     }
 
     public void handleUnknownMessage(long chatId) {
-        String responseText = "Вибачте, але я не розпізнав вашого запиту! Спробуйте будь ласка ще раз.";
+        String responseText = JsonService.getText("basePhrases", "unknownMessage");
         _messageService.sendMessage(chatId, responseText);
     }
 
     public void handleCategoryCommand(long chatId, String category) {
-        if (category.equals("Основи")) {
-            String responseText = "Дана категорія містить інформацію про основи керування та роботу автомобіля.";
-            _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getBasicsKeyboardMarkup());
-        } else {
-            String responseText = "Ви відкрили категорію " + category;
-            _messageService.sendMessage(chatId, responseText);
+        switch (category) {
+            case "Основи" -> {
+                String responseText = JsonService.getText("generalPhrases", "general");
+                _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getBasicsKeyboardMarkup());
+            }
+            case "Будова" -> {
+                String responseText = JsonService.getText("generalPhrases", "structure");
+                _messageService.sendMessage(chatId, responseText);
+            }
+            case "Історія" -> {
+                String responseText = JsonService.getText("generalPhrases", "history");
+                _messageService.sendMessage(chatId, responseText);
+            }
+            case "Основи керування" -> {
+                String responseText = JsonService.getText("basicsManager", "basics");
+                _messageService.sendMessage(chatId, responseText);
+            }
+            case "Техніка управління" -> {
+                String responseText = JsonService.getText("basicsManager", "tech");
+                _messageService.sendMessage(chatId, responseText);
+            }
+            case "Принцип роботи" -> {
+                String responseText = JsonService.getText("basicsManager", "principle");
+                _messageService.sendMessage(chatId, responseText);
+            }
         }
     }
 
     public void handleReturnBackButton(long chatId) {
-        String responseText = "Ви повернулися до головного меню. Оберіть категорію нижче.";
+        String responseText = JsonService.getText("basePhrases", "returnToMainMenu");
         _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getMainKeyboardMarkup());
     }
 }
