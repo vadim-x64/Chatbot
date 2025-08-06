@@ -51,4 +51,31 @@ public class KeyboardService {
         basicsKeyboardMarkup.setKeyboard(basicsKeyboardRows);
         return basicsKeyboardMarkup;
     }
+
+    public ReplyKeyboardMarkup getHistoryKeyboardMarkup() {
+        ReplyKeyboardMarkup basicsKeyboardMarkup = new ReplyKeyboardMarkup();
+        basicsKeyboardMarkup.setResizeKeyboard(true);
+        basicsKeyboardMarkup.setOneTimeKeyboard(false);
+
+        List<KeyboardRow> basicsKeyboardRows = new ArrayList<>();
+
+        KeyboardRow basicsKeyboardRow1 = new KeyboardRow();
+        basicsKeyboardRow1.add(new KeyboardButton("Марки авто"));
+        basicsKeyboardRows.add(basicsKeyboardRow1);
+
+        KeyboardRow basicsKeyboardRow2 = new KeyboardRow();
+        basicsKeyboardRow2.add(new KeyboardButton("Цікаві факти"));
+        basicsKeyboardRows.add(basicsKeyboardRow2);
+
+        KeyboardRow basicsKeyboardRow3 = new KeyboardRow();
+        basicsKeyboardRow3.add(new KeyboardButton("Видатні інженери"));
+        basicsKeyboardRows.add(basicsKeyboardRow3);
+
+        KeyboardRow basicsKeyboardRow4 = new KeyboardRow();
+        basicsKeyboardRow4.add(new KeyboardButton("Повернутися назад"));
+        basicsKeyboardRows.add(basicsKeyboardRow4);
+
+        basicsKeyboardMarkup.setKeyboard(basicsKeyboardRows);
+        return basicsKeyboardMarkup;
+    }
 }

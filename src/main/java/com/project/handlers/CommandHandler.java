@@ -26,6 +26,11 @@ public class CommandHandler {
         _messageService.sendMessage(chatId, responseText);
     }
 
+    public void handleReturnBackButton(long chatId) {
+        String responseText = JsonService.getText("basePhrases", "returnToMainMenu");
+        _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getMainKeyboardMarkup());
+    }
+
     public void handleCategoryCommand(long chatId, String category) {
         switch (category) {
             case "Основи" -> {
@@ -38,7 +43,22 @@ public class CommandHandler {
             }
             case "Історія" -> {
                 String responseText = JsonService.getText("generalPhrases", "history");
-                _messageService.sendMessage(chatId, responseText);
+
+                String firstPart = responseText.length() > 1000
+                        ? responseText.substring(0, 1000)
+                        : responseText;
+
+                String secondPart = responseText.length() > 1000
+                        ? responseText.substring(1000)
+                        : null;
+
+                String imageUrl = JsonService.getText("generalPhrases", "historyImageUrl");
+
+                _messageService.sendPhotoWithCaptionAndKeyboard(chatId, imageUrl, firstPart, _keyboardService.getHistoryKeyboardMarkup());
+
+                if (secondPart != null && !secondPart.isBlank()) {
+                    _messageService.sendMessage(chatId, secondPart.trim());
+                }
             }
             case "Основи керування" -> {
                 String responseText = JsonService.getText("basicsManager", "basics");
@@ -53,10 +73,5 @@ public class CommandHandler {
                 _messageService.sendMessage(chatId, responseText);
             }
         }
-    }
-
-    public void handleReturnBackButton(long chatId) {
-        String responseText = JsonService.getText("basePhrases", "returnToMainMenu");
-        _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getMainKeyboardMarkup());
     }
 }
