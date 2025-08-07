@@ -61,23 +61,17 @@ public class KeyboardService {
 
         KeyboardRow basicsKeyboardRow1 = new KeyboardRow();
         basicsKeyboardRow1.add(new KeyboardButton("Вступ"));
+        basicsKeyboardRow1.add(new KeyboardButton("Марки авто"));
         basicsKeyboardRows.add(basicsKeyboardRow1);
 
         KeyboardRow basicsKeyboardRow2 = new KeyboardRow();
-        basicsKeyboardRow2.add(new KeyboardButton("Марки авто"));
+        basicsKeyboardRow2.add(new KeyboardButton("Цікаві факти"));
+        basicsKeyboardRow2.add(new KeyboardButton("Видатні інженери"));
         basicsKeyboardRows.add(basicsKeyboardRow2);
 
         KeyboardRow basicsKeyboardRow3 = new KeyboardRow();
-        basicsKeyboardRow3.add(new KeyboardButton("Цікаві факти"));
+        basicsKeyboardRow3.add(new KeyboardButton("Повернутися назад"));
         basicsKeyboardRows.add(basicsKeyboardRow3);
-
-        KeyboardRow basicsKeyboardRow4 = new KeyboardRow();
-        basicsKeyboardRow4.add(new KeyboardButton("Повернутися назад"));
-        basicsKeyboardRows.add(basicsKeyboardRow4);
-
-        KeyboardRow basicsKeyboardRow5 = new KeyboardRow();
-        basicsKeyboardRow5.add(new KeyboardButton("Повернутися назад"));
-        basicsKeyboardRows.add(basicsKeyboardRow5);
 
         basicsKeyboardMarkup.setKeyboard(basicsKeyboardRows);
         return basicsKeyboardMarkup;
