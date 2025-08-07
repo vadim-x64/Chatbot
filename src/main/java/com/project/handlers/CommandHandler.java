@@ -37,29 +37,6 @@ public class CommandHandler {
                 String responseText = JsonService.getText("generalPhrases", "general");
                 _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getBasicsKeyboardMarkup());
             }
-            case "Будова" -> {
-                String responseText = JsonService.getText("generalPhrases", "structure");
-                _messageService.sendMessage(chatId, responseText);
-            }
-            case "Історія" -> {
-                String responseText = JsonService.getText("generalPhrases", "history");
-
-                String firstPart = responseText.length() > 1000
-                        ? responseText.substring(0, 1000)
-                        : responseText;
-
-                String secondPart = responseText.length() > 1000
-                        ? responseText.substring(1000)
-                        : null;
-
-                String imageUrl = JsonService.getText("generalPhrases", "historyImageUrl");
-
-                _messageService.sendPhotoWithCaptionAndKeyboard(chatId, imageUrl, firstPart, _keyboardService.getHistoryKeyboardMarkup());
-
-                if (secondPart != null && !secondPart.isBlank()) {
-                    _messageService.sendMessage(chatId, secondPart.trim());
-                }
-            }
             case "Основи керування" -> {
                 String responseText = JsonService.getText("basicsManager", "basics");
                 _messageService.sendMessage(chatId, responseText);
@@ -71,6 +48,35 @@ public class CommandHandler {
             case "Принцип роботи" -> {
                 String responseText = JsonService.getText("basicsManager", "principle");
                 _messageService.sendMessage(chatId, responseText);
+            }
+
+            case "Будова" -> {
+                String responseText = JsonService.getText("generalPhrases", "structure");
+                _messageService.sendMessage(chatId, responseText);
+            }
+
+            case "Історія" -> {
+                String responseText = JsonService.getText("generalPhrases", "history");
+                _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getHistoryKeyboardMarkup());
+            }
+            case "Вступ" -> {
+                String responseText = JsonService.getText("introduction", "intro");
+
+                String firstPart = responseText.length() > 1000
+                        ? responseText.substring(0, 1000)
+                        : responseText;
+
+                String secondPart = responseText.length() > 1000
+                        ? responseText.substring(1000)
+                        : null;
+
+                String imageUrl = JsonService.getText("introduction", "historyImageUrl");
+
+                _messageService.sendPhotoWithCaptionAndKeyboard(chatId, imageUrl, firstPart, _keyboardService.getHistoryKeyboardMarkup());
+
+                if (secondPart != null && !secondPart.isBlank()) {
+                    _messageService.sendMessage(chatId, secondPart.trim());
+                }
             }
         }
     }

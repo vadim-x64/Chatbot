@@ -39,7 +39,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                 switch (messageText) {
                     case "/start", "/restart" -> _commandHandler.handleStartCommand(chatId, user);
-                    case "Основи", "Будова", "Історія", "Основи керування", "Техніка управління", "Принцип роботи" ->
+                    case "Основи", "Будова", "Історія", "Основи керування", "Техніка управління", "Принцип роботи", "Вступ" ->
                             _commandHandler.handleCategoryCommand(chatId, messageText);
                     case "Повернутися назад" -> _commandHandler.handleReturnBackButton(chatId);
                     default -> _commandHandler.handleUnknownMessage(chatId);
