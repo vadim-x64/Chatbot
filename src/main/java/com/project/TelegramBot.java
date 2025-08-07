@@ -6,6 +6,7 @@ import com.project.services.MessageService;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
@@ -39,13 +40,25 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                 switch (messageText) {
                     case "/start", "/restart" -> _commandHandler.handleStartCommand(chatId, user);
-                    case "Основи", "Будова", "Історія", "Основи керування", "Техніка управління", "Принцип роботи", "Вступ" ->
-                            _commandHandler.handleCategoryCommand(chatId, messageText);
+                    case "Видатні інженери", "Основи", "Будова", "Історія", "Основи керування", "Техніка управління",
+                         "Принцип роботи", "Вступ" -> _commandHandler.handleCategoryCommand(chatId, messageText);
                     case "Повернутися назад" -> _commandHandler.handleReturnBackButton(chatId);
                     default -> _commandHandler.handleUnknownMessage(chatId);
                 }
             } else {
                 _commandHandler.handleUnknownMessage(chatId);
+            }
+        } else if (update.hasCallbackQuery()) {
+            long chatId = update.getCallbackQuery().getMessage().getChatId();
+            int messageId = update.getCallbackQuery().getMessage().getMessageId();
+            String callbackData = update.getCallbackQuery().getData();
+
+            if (callbackData.startsWith("previous")) {
+                int currentPage = Integer.parseInt(callbackData.replace("previous", ""));
+                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage - 1);
+            } else if (callbackData.startsWith("next")) {
+                int currentPage = Integer.parseInt(callbackData.replace("next", ""));
+                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage + 1);
             }
         }
     }

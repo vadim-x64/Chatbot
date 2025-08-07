@@ -3,7 +3,10 @@ package com.project.services;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -47,6 +50,37 @@ public class MessageService {
 
         try {
             _telegramLongPollingBot.execute(sendPhoto);
+        } catch (TelegramApiException ignored) {
+        }
+    }
+
+    public void sendPhotoWithInlineKeyboard(long chatId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {
+        SendPhoto sendPhoto = new SendPhoto();
+        sendPhoto.setChatId(String.valueOf(chatId));
+        sendPhoto.setPhoto(new InputFile(photoUrl));
+        sendPhoto.setCaption(caption);
+        sendPhoto.setReplyMarkup(inlineKeyboardMarkup);
+
+        try {
+            _telegramLongPollingBot.execute(sendPhoto);
+        } catch (TelegramApiException ignored) {
+        }
+    }
+
+    public void editMessageMedia(long chatId, int messageId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {
+        EditMessageMedia editMessageMedia = new EditMessageMedia();
+        editMessageMedia.setChatId(String.valueOf(chatId));
+        editMessageMedia.setMessageId(messageId);
+
+        InputMediaPhoto media = new InputMediaPhoto();
+        media.setMedia(photoUrl);
+        media.setCaption(caption);
+
+        editMessageMedia.setMedia(media);
+        editMessageMedia.setReplyMarkup(inlineKeyboardMarkup);
+
+        try {
+            _telegramLongPollingBot.execute(editMessageMedia);
         } catch (TelegramApiException ignored) {
         }
     }

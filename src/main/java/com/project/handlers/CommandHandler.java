@@ -1,9 +1,12 @@
 package com.project.handlers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.project.services.JsonService;
 import com.project.services.KeyboardService;
 import com.project.services.MessageService;
 import org.telegram.telegrambots.meta.api.objects.User;
+
+import java.util.Objects;
 
 public class CommandHandler {
 
@@ -78,6 +81,51 @@ public class CommandHandler {
                     _messageService.sendMessage(chatId, secondPart.trim());
                 }
             }
+            case "Видатні інженери" -> handleEngineersCommand(chatId, 0);
+        }
+    }
+
+    public void handleEngineersCommand(long chatId, int page) {
+        try {
+            JsonNode engineersData = JsonService.getJsonArray("engineers", "list");
+
+            int totalEngineers = Objects.requireNonNull(engineersData).size();
+
+            if (page < 0) page = totalEngineers - 1;
+            if (page >= totalEngineers) page = 0;
+
+            JsonNode currentEngineer = engineersData.get(page);
+            String description = currentEngineer.get("description").asText();
+            String imageUrl = currentEngineer.get("imageUrl").asText();
+
+            String caption = String.format(description, page + 1, totalEngineers);
+
+            _messageService.sendPhotoWithInlineKeyboard(chatId, imageUrl, caption,
+                    _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
+
+        } catch (Exception ignored) {
+        }
+    }
+
+    public void handleEngineersPagination(long chatId, int messageId, int page) {
+        try {
+            JsonNode engineersData = JsonService.getJsonArray("engineers", "list");
+
+            int totalEngineers = Objects.requireNonNull(engineersData).size();
+
+            if (page < 0) page = totalEngineers - 1;
+            if (page >= totalEngineers) page = 0;
+
+            JsonNode currentEngineer = engineersData.get(page);
+
+            String description = currentEngineer.get("description").asText();
+            String imageUrl = currentEngineer.get("imageUrl").asText();
+            String caption = String.format(description, page + 1, totalEngineers);
+
+            _messageService.editMessageMedia(chatId, messageId, imageUrl, caption,
+                    _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
+
+        } catch (Exception ignored) {
         }
     }
 }

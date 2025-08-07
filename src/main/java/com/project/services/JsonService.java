@@ -33,4 +33,13 @@ public class JsonService {
         }
         return cache.get(fileName);
     }
+
+    public static JsonNode getJsonArray(String fileName, String key) {
+        try {
+            JsonNode jsonNode = getJsonNode(fileName);
+            return jsonNode.get(key);
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
 }

@@ -9,5 +9,15 @@
         <language minSize="101" name="Java" />
       </Languages>
     </inspection_tool>
+    <inspection_tool class="ExtractMethodRecommender" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="minLength" value="523" />
+    </inspection_tool>
+    <inspection_tool class="SizeReplaceableByIsEmpty" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredTypes">
+        <set>
+          <option value="com.fasterxml.jackson.databind.JsonNode" />
+        </set>
+      </option>
+    </inspection_tool>
   </profile>
 </component>

@@ -1,6 +1,8 @@
 package com.project.services;
 
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
@@ -75,5 +77,33 @@ public class KeyboardService {
 
         basicsKeyboardMarkup.setKeyboard(basicsKeyboardRows);
         return basicsKeyboardMarkup;
+    }
+
+    public InlineKeyboardMarkup getEngineersInlineKeyboard(int currentPage, int totalPages) {
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rows = new ArrayList<>();
+
+        List<InlineKeyboardButton> navigationRow = new ArrayList<>();
+
+        if (totalPages > 1) {
+            if (currentPage > 0) {
+                InlineKeyboardButton prevButton = new InlineKeyboardButton();
+                prevButton.setText("Назад");
+                prevButton.setCallbackData("previous" + currentPage);
+                navigationRow.add(prevButton);
+            }
+
+            if (currentPage < totalPages - 1) {
+                InlineKeyboardButton nextButton = new InlineKeyboardButton();
+                nextButton.setText("Вперед");
+                nextButton.setCallbackData("next" + currentPage);
+                navigationRow.add(nextButton);
+            }
+
+            rows.add(navigationRow);
+        }
+
+        inlineKeyboardMarkup.setKeyboard(rows);
+        return inlineKeyboardMarkup;
     }
 }
