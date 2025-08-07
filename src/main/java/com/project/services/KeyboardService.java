@@ -35,15 +35,15 @@ public class KeyboardService {
         List<KeyboardRow> basicsKeyboardRows = new ArrayList<>();
 
         KeyboardRow basicsKeyboardRow1 = new KeyboardRow();
-        basicsKeyboardRow1.add(new KeyboardButton("Основи керування"));
+        basicsKeyboardRow1.add(new KeyboardButton("Принцип роботи"));
         basicsKeyboardRows.add(basicsKeyboardRow1);
 
         KeyboardRow basicsKeyboardRow2 = new KeyboardRow();
-        basicsKeyboardRow2.add(new KeyboardButton("Техніка управління"));
+        basicsKeyboardRow2.add(new KeyboardButton("Основи керування"));
         basicsKeyboardRows.add(basicsKeyboardRow2);
 
         KeyboardRow basicsKeyboardRow3 = new KeyboardRow();
-        basicsKeyboardRow3.add(new KeyboardButton("Принцип роботи"));
+        basicsKeyboardRow3.add(new KeyboardButton("Техніка управління"));
         basicsKeyboardRows.add(basicsKeyboardRow3);
 
         KeyboardRow basicsKeyboardRow4 = new KeyboardRow();

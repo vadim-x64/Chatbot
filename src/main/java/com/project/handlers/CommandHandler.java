@@ -65,20 +65,20 @@ public class CommandHandler {
             case "Вступ" -> {
                 String responseText = JsonService.getText("introduction", "intro");
 
-                String firstPart = responseText.length() > 1000
-                        ? responseText.substring(0, 1000)
-                        : responseText;
+                int splitIndex = responseText.length() > 1000
+                        ? responseText.lastIndexOf(" ", 1000)
+                        : responseText.length();
 
-                String secondPart = responseText.length() > 1000
-                        ? responseText.substring(1000)
+                String firstPart = responseText.substring(0, splitIndex).trim();
+                String secondPart = responseText.length() > splitIndex
+                        ? responseText.substring(splitIndex).trim()
                         : null;
 
                 String imageUrl = JsonService.getText("introduction", "historyImageUrl");
-
                 _messageService.sendPhotoWithCaptionAndKeyboard(chatId, imageUrl, firstPart, _keyboardService.getHistoryKeyboardMarkup());
 
                 if (secondPart != null && !secondPart.isBlank()) {
-                    _messageService.sendMessage(chatId, secondPart.trim());
+                    _messageService.sendMessage(chatId, secondPart);
                 }
             }
             case "Видатні інженери" -> handleEngineersCommand(chatId, 0);
@@ -99,9 +99,7 @@ public class CommandHandler {
             String imageUrl = currentEngineer.get("imageUrl").asText();
 
             String caption = String.format(description, page + 1, totalEngineers);
-
-            _messageService.sendPhotoWithInlineKeyboard(chatId, imageUrl, caption,
-                    _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
+            _messageService.sendPhotoWithInlineKeyboard(chatId, imageUrl, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
 
         } catch (Exception ignored) {
         }
@@ -122,8 +120,7 @@ public class CommandHandler {
             String imageUrl = currentEngineer.get("imageUrl").asText();
             String caption = String.format(description, page + 1, totalEngineers);
 
-            _messageService.editMessageMedia(chatId, messageId, imageUrl, caption,
-                    _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
+            _messageService.editMessageMedia(chatId, messageId, imageUrl, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
 
         } catch (Exception ignored) {
         }
