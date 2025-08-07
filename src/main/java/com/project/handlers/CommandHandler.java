@@ -98,7 +98,7 @@ public class CommandHandler {
             String description = currentEngineer.get("description").asText();
             String imageUrl = currentEngineer.get("imageUrl").asText();
 
-            String caption = String.format(description, page + 1, totalEngineers);
+            String caption = description + (page + 1) + "/" + totalEngineers;
             _messageService.sendPhotoWithInlineKeyboard(chatId, imageUrl, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
 
         } catch (Exception ignored) {
@@ -118,8 +118,8 @@ public class CommandHandler {
 
             String description = currentEngineer.get("description").asText();
             String imageUrl = currentEngineer.get("imageUrl").asText();
-            String caption = String.format(description, page + 1, totalEngineers);
 
+            String caption = description + (page + 1) + "/" + totalEngineers;
             _messageService.editMessageMedia(chatId, messageId, imageUrl, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
 
         } catch (Exception ignored) {
