@@ -79,13 +79,35 @@ public class KeyboardService {
         return basicsKeyboardMarkup;
     }
 
-    public InlineKeyboardMarkup getEngineersInlineKeyboard(int currentPage, int totalPages) {
+    public InlineKeyboardMarkup getEngineersInlineKeyboard(int currentPage, int totalPages, int currentPhoto, int totalPhotos) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
 
-        List<InlineKeyboardButton> navigationRow = new ArrayList<>();
+        if (totalPhotos > 1) {
+            List<InlineKeyboardButton> photoRow = new ArrayList<>();
+
+            if (currentPhoto > 0) {
+                InlineKeyboardButton prevPhotoButton = new InlineKeyboardButton();
+                prevPhotoButton.setText("⬅️");
+                prevPhotoButton.setCallbackData("photo_prev_" + currentPage + "_" + currentPhoto);
+                photoRow.add(prevPhotoButton);
+            }
+
+            if (currentPhoto < totalPhotos - 1) {
+                InlineKeyboardButton nextPhotoButton = new InlineKeyboardButton();
+                nextPhotoButton.setText("➡️");
+                nextPhotoButton.setCallbackData("photo_next_" + currentPage + "_" + currentPhoto);
+                photoRow.add(nextPhotoButton);
+            }
+
+            if (!photoRow.isEmpty()) {
+                rows.add(photoRow);
+            }
+        }
 
         if (totalPages > 1) {
+            List<InlineKeyboardButton> navigationRow = new ArrayList<>();
+
             if (currentPage > 0) {
                 InlineKeyboardButton prevButton = new InlineKeyboardButton();
                 prevButton.setText("Назад");
@@ -100,7 +122,9 @@ public class KeyboardService {
                 navigationRow.add(nextButton);
             }
 
-            rows.add(navigationRow);
+            if (!navigationRow.isEmpty()) {
+                rows.add(navigationRow);
+            }
         }
 
         inlineKeyboardMarkup.setKeyboard(rows);

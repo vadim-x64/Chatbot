@@ -81,14 +81,13 @@ public class CommandHandler {
                     _messageService.sendMessage(chatId, secondPart);
                 }
             }
-            case "Видатні інженери" -> handleEngineersCommand(chatId, 0);
+            case "Видатні інженери" -> handleEngineersCommand(chatId, 0, 0);
         }
     }
 
-    public void handleEngineersCommand(long chatId, int page) {
+    public void handleEngineersCommand(long chatId, int page, int photoIndex) {
         try {
             JsonNode engineersData = JsonService.getJsonArray("engineers", "list");
-
             int totalEngineers = Objects.requireNonNull(engineersData).size();
 
             if (page < 0) page = totalEngineers - 1;
@@ -96,16 +95,34 @@ public class CommandHandler {
 
             JsonNode currentEngineer = engineersData.get(page);
             String description = currentEngineer.get("description").asText();
-            String imageUrl = currentEngineer.get("imageUrl").asText();
 
-            String caption = description + (page + 1) + "/" + totalEngineers;
-            _messageService.sendPhotoWithInlineKeyboard(chatId, imageUrl, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
+            JsonNode imageUrl = currentEngineer.get("imageUrl");
+            String imageUri;
+            int totalPhotos = 1;
+
+            if (imageUrl.isArray()) {
+                totalPhotos = imageUrl.size();
+                if (photoIndex < 0) photoIndex = totalPhotos - 1;
+                if (photoIndex >= totalPhotos) photoIndex = 0;
+                imageUri = imageUrl.get(photoIndex).asText();
+            } else {
+                photoIndex = 0;
+                imageUri = imageUrl.asText();
+            }
+
+            String caption = description + "Сторінка " + (page + 1) + " з " + totalEngineers;
+
+            if (totalPhotos > 1) {
+                caption += "\nФото " + (photoIndex + 1) + " з " + totalPhotos;
+            }
+
+            _messageService.sendPhotoWithInlineKeyboard(chatId, imageUri, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers, photoIndex, totalPhotos));
 
         } catch (Exception ignored) {
         }
     }
 
-    public void handleEngineersPagination(long chatId, int messageId, int page) {
+    public void handleEngineersPagination(long chatId, int messageId, int page, int photoIndex) {
         try {
             JsonNode engineersData = JsonService.getJsonArray("engineers", "list");
 
@@ -115,12 +132,28 @@ public class CommandHandler {
             if (page >= totalEngineers) page = 0;
 
             JsonNode currentEngineer = engineersData.get(page);
-
             String description = currentEngineer.get("description").asText();
-            String imageUrl = currentEngineer.get("imageUrl").asText();
 
-            String caption = description + (page + 1) + "/" + totalEngineers;
-            _messageService.editMessageMedia(chatId, messageId, imageUrl, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers));
+            JsonNode imageUrl = currentEngineer.get("imageUrl");
+            String imageUri;
+            int totalPhotos = 1;
+
+            if (imageUrl.isArray()) {
+                totalPhotos = imageUrl.size();
+                if (photoIndex < 0) photoIndex = totalPhotos - 1;
+                if (photoIndex >= totalPhotos) photoIndex = 0;
+                imageUri = imageUrl.get(photoIndex).asText();
+            } else {
+                photoIndex = 0;
+                imageUri = imageUrl.asText();
+            }
+            String caption = description + "Сторінка " + (page + 1) + " з " + totalEngineers;
+
+            if (totalPhotos > 1) {
+                caption += "\nФото " + (photoIndex + 1) + " з " + totalPhotos;
+            }
+
+            _messageService.editMessageMedia(chatId, messageId, imageUri, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers, photoIndex, totalPhotos));
 
         } catch (Exception ignored) {
         }

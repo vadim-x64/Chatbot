@@ -55,10 +55,20 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             if (callbackData.startsWith("previous")) {
                 int currentPage = Integer.parseInt(callbackData.replace("previous", ""));
-                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage - 1);
+                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage - 1, 0);
             } else if (callbackData.startsWith("next")) {
                 int currentPage = Integer.parseInt(callbackData.replace("next", ""));
-                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage + 1);
+                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage + 1, 0);
+            } else if (callbackData.startsWith("photo_prev_")) {
+                String[] parts = callbackData.replace("photo_prev_", "").split("_");
+                int currentPage = Integer.parseInt(parts[0]);
+                int currentPhoto = Integer.parseInt(parts[1]);
+                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage, currentPhoto - 1);
+            } else if (callbackData.startsWith("photo_next_")) {
+                String[] parts = callbackData.replace("photo_next_", "").split("_");
+                int currentPage = Integer.parseInt(parts[0]);
+                int currentPhoto = Integer.parseInt(parts[1]);
+                _commandHandler.handleEngineersPagination(chatId, messageId, currentPage, currentPhoto + 1);
             }
         }
     }
