@@ -206,7 +206,7 @@ public class CommandHandler {
                 imageUri = imageUrl.asText();
             }
 
-            String caption = modelName + "\n\n" + description + "\nМодель " + (modelIndex + 1) + " з " + totalModels;
+            String caption = brandName + " " + modelName + "\n\n" + description + "\nМодель " + (modelIndex + 1) + " з " + totalModels;
 
             if (totalPhotos > 1) {
                 caption += "\nФото " + (photoIndex + 1) + " з " + totalPhotos;
