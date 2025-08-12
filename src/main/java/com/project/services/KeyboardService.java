@@ -16,13 +16,17 @@ public class KeyboardService {
         mainKeyboardMarkup.setOneTimeKeyboard(false);
 
         List<KeyboardRow> mainKeyboardRows = new ArrayList<>();
-        KeyboardRow mainKeyboardRow = new KeyboardRow();
 
-        mainKeyboardRow.add(new KeyboardButton("Основи"));
-        mainKeyboardRow.add(new KeyboardButton("Будова"));
-        mainKeyboardRow.add(new KeyboardButton("Історія"));
+        KeyboardRow mainKeyboardRow1 = new KeyboardRow();
+        mainKeyboardRow1.add(new KeyboardButton("Основи"));
+        mainKeyboardRow1.add(new KeyboardButton("Будова"));
+        mainKeyboardRows.add(mainKeyboardRow1);
 
-        mainKeyboardRows.add(mainKeyboardRow);
+        KeyboardRow mainKeyboardRow2 = new KeyboardRow();
+        mainKeyboardRow2.add(new KeyboardButton("Історія"));
+        mainKeyboardRow2.add(new KeyboardButton("Автомобілі"));
+        mainKeyboardRows.add(mainKeyboardRow2);
+
         mainKeyboardMarkup.setKeyboard(mainKeyboardRows);
         return mainKeyboardMarkup;
     }
@@ -100,9 +104,7 @@ public class KeyboardService {
                 photoRow.add(nextPhotoButton);
             }
 
-            if (!photoRow.isEmpty()) {
-                rows.add(photoRow);
-            }
+            rows.add(photoRow);
         }
 
         if (totalPages > 1) {
@@ -122,9 +124,7 @@ public class KeyboardService {
                 navigationRow.add(nextButton);
             }
 
-            if (!navigationRow.isEmpty()) {
-                rows.add(navigationRow);
-            }
+            rows.add(navigationRow);
         }
 
         inlineKeyboardMarkup.setKeyboard(rows);
