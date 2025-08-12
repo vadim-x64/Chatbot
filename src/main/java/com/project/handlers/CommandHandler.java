@@ -51,12 +51,10 @@ public class CommandHandler {
                 String responseText = JsonService.getText("basicsManager", "principle");
                 _messageService.sendMessage(chatId, responseText);
             }
-
             case "Будова" -> {
                 String responseText = JsonService.getText("generalPhrases", "structure");
                 _messageService.sendMessage(chatId, responseText);
             }
-
             case "Історія" -> {
                 String responseText = JsonService.getText("generalPhrases", "history");
                 _messageService.sendMessageWithMainKeyboard(chatId, responseText, _keyboardService.getHistoryKeyboardMarkup());
@@ -64,7 +62,7 @@ public class CommandHandler {
             case "Вступ" -> {
                 String responseText = JsonService.getText("introduction", "intro");
 
-                int splitIndex = responseText.length() > 1000
+                int splitIndex = Objects.requireNonNull(responseText).length() > 1000
                         ? responseText.lastIndexOf(" ", 1000)
                         : responseText.length();
 
@@ -81,6 +79,7 @@ public class CommandHandler {
                 }
             }
             case "Видатні інженери" -> handleEngineersCommand(chatId, 0, 0);
+            case "Автомобілі" -> handleAutomobilesCommand(chatId);
         }
     }
 
@@ -94,15 +93,16 @@ public class CommandHandler {
 
             JsonNode currentEngineer = engineersData.get(page);
             String description = currentEngineer.get("description").asText();
-
             JsonNode imageUrl = currentEngineer.get("imageUrl");
             String imageUri;
             int totalPhotos = 1;
 
             if (imageUrl.isArray()) {
                 totalPhotos = imageUrl.size();
+
                 if (photoIndex < 0) photoIndex = totalPhotos - 1;
                 if (photoIndex >= totalPhotos) photoIndex = 0;
+
                 imageUri = imageUrl.get(photoIndex).asText();
             } else {
                 photoIndex = 0;
@@ -116,7 +116,6 @@ public class CommandHandler {
             }
 
             _messageService.sendPhotoWithInlineKeyboard(chatId, imageUri, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers, photoIndex, totalPhotos));
-
         } catch (Exception ignored) {
         }
     }
@@ -124,7 +123,6 @@ public class CommandHandler {
     public void handleEngineersPagination(long chatId, int messageId, int page, int photoIndex) {
         try {
             JsonNode engineersData = JsonService.getJsonArray("engineers", "list");
-
             int totalEngineers = Objects.requireNonNull(engineersData).size();
 
             if (page < 0) page = totalEngineers - 1;
@@ -132,20 +130,22 @@ public class CommandHandler {
 
             JsonNode currentEngineer = engineersData.get(page);
             String description = currentEngineer.get("description").asText();
-
             JsonNode imageUrl = currentEngineer.get("imageUrl");
             String imageUri;
             int totalPhotos = 1;
 
             if (imageUrl.isArray()) {
                 totalPhotos = imageUrl.size();
+
                 if (photoIndex < 0) photoIndex = totalPhotos - 1;
                 if (photoIndex >= totalPhotos) photoIndex = 0;
+
                 imageUri = imageUrl.get(photoIndex).asText();
             } else {
                 photoIndex = 0;
                 imageUri = imageUrl.asText();
             }
+
             String caption = description + "Сторінка " + (page + 1) + " з " + totalEngineers;
 
             if (totalPhotos > 1) {
@@ -153,7 +153,75 @@ public class CommandHandler {
             }
 
             _messageService.editMessageMedia(chatId, messageId, imageUri, caption, _keyboardService.getEngineersInlineKeyboard(page, totalEngineers, photoIndex, totalPhotos));
+        } catch (Exception ignored) {
+        }
+    }
 
+    public void handleAutomobilesCommand(long chatId) {
+        String responseText = JsonService.getText("generalPhrases", "automobiles");
+        String defaultImageUrl = JsonService.getText("generalPhrases", "defaultAutomobileImageUrl");
+        _messageService.sendPhotoWithInlineKeyboard(chatId, defaultImageUrl, responseText, _keyboardService.getAutomobilesInlineKeyboard());
+    }
+
+    public void handleCarBrandCommand(long chatId, int messageId, String brandName) {
+        handleCarModelsPagination(chatId, messageId, brandName, 0, 0);
+    }
+
+    public void handleCarModelsPagination(long chatId, int messageId, String brandName, int modelIndex, int photoIndex) {
+        try {
+            JsonNode carsData = JsonService.getJsonArray("automobiles", "list");
+            JsonNode brandData = null;
+
+            for (JsonNode brand : Objects.requireNonNull(carsData)) {
+                if (brand.get("name").asText().equals(brandName)) {
+                    brandData = brand;
+                    break;
+                }
+            }
+
+            if (brandData == null) return;
+
+            JsonNode models = brandData.get("models");
+            int totalModels = models.size();
+
+            if (modelIndex < 0) modelIndex = totalModels - 1;
+            if (modelIndex >= totalModels) modelIndex = 0;
+
+            JsonNode currentModel = models.get(modelIndex);
+            String modelName = currentModel.get("name").asText();
+            String description = currentModel.get("description").asText();
+            JsonNode imageUrl = currentModel.get("imageUrl");
+            String imageUri;
+            int totalPhotos = 1;
+
+            if (imageUrl.isArray()) {
+                totalPhotos = imageUrl.size();
+
+                if (photoIndex < 0) photoIndex = totalPhotos - 1;
+                if (photoIndex >= totalPhotos) photoIndex = 0;
+
+                imageUri = imageUrl.get(photoIndex).asText();
+            } else {
+                photoIndex = 0;
+                imageUri = imageUrl.asText();
+            }
+
+            String caption = modelName + "\n\n" + description + "\nМодель " + (modelIndex + 1) + " з " + totalModels;
+
+            if (totalPhotos > 1) {
+                caption += "\nФото " + (photoIndex + 1) + " з " + totalPhotos;
+            }
+
+            _messageService.editMessageMedia(chatId, messageId, imageUri, caption, _keyboardService.getCarModelsInlineKeyboard(brandName, modelIndex, totalModels, photoIndex, totalPhotos));
+        } catch (Exception ignored) {
+        }
+    }
+
+    public void handleBackToAutomobiles(long chatId, int messageId) {
+        try {
+            String responseText = JsonService.getText("generalPhrases", "automobiles");
+            String defaultImageUrl = JsonService.getText("generalPhrases", "defaultAutomobileImageUrl");
+            _messageService.editMessageMedia(chatId, messageId, defaultImageUrl, responseText, _keyboardService.getAutomobilesInlineKeyboard());
         } catch (Exception ignored) {
         }
     }

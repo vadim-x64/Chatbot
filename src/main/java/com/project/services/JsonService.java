@@ -18,6 +18,7 @@ public class JsonService {
             return jsonNode.get(key).asText();
         } catch (Exception ignored) {
         }
+
         return null;
     }
 
@@ -31,6 +32,7 @@ public class JsonService {
             InputStream inputStream = JsonService.class.getResourceAsStream(path);
             cache.put(fileName, objectMapper.readTree(inputStream));
         }
+
         return cache.get(fileName);
     }
 
@@ -40,6 +42,7 @@ public class JsonService {
             return jsonNode.get(key);
         } catch (Exception ignored) {
         }
+
         return null;
     }
 }

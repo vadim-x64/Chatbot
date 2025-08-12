@@ -6,7 +6,6 @@ import com.project.services.MessageService;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
@@ -40,7 +39,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                 switch (messageText) {
                     case "/start", "/restart" -> _commandHandler.handleStartCommand(chatId, user);
-                    case "Видатні інженери", "Основи", "Будова", "Історія", "Основи керування", "Техніка управління", "Принцип роботи", "Вступ" -> _commandHandler.handleCategoryCommand(chatId, messageText);
+                    case "Видатні інженери", "Основи", "Будова", "Історія", "Основи керування", "Техніка управління", "Принцип роботи", "Вступ", "Автомобілі" -> _commandHandler.handleCategoryCommand(chatId, messageText);
                     case "Повернутися назад" -> _commandHandler.handleReturnBackButton(chatId);
                     default -> _commandHandler.handleUnknownMessage(chatId);
                 }
@@ -68,6 +67,33 @@ public class TelegramBot extends TelegramLongPollingBot {
                 int currentPage = Integer.parseInt(parts[0]);
                 int currentPhoto = Integer.parseInt(parts[1]);
                 _commandHandler.handleEngineersPagination(chatId, messageId, currentPage, currentPhoto + 1);
+            } else if (callbackData.startsWith("car_brand_")) {
+                String brandName = callbackData.replace("car_brand_", "");
+                _commandHandler.handleCarBrandCommand(chatId, messageId, brandName);
+            } else if (callbackData.startsWith("car_model_prev_")) {
+                String[] parts = callbackData.replace("car_model_prev_", "").split("_");
+                String brandName = parts[0];
+                int currentModel = Integer.parseInt(parts[1]);
+                _commandHandler.handleCarModelsPagination(chatId, messageId, brandName, currentModel - 1, 0);
+            } else if (callbackData.startsWith("car_model_next_")) {
+                String[] parts = callbackData.replace("car_model_next_", "").split("_");
+                String brandName = parts[0];
+                int currentModel = Integer.parseInt(parts[1]);
+                _commandHandler.handleCarModelsPagination(chatId, messageId, brandName, currentModel + 1, 0);
+            } else if (callbackData.startsWith("car_photo_prev_")) {
+                String[] parts = callbackData.replace("car_photo_prev_", "").split("_");
+                String brandName = parts[0];
+                int currentModel = Integer.parseInt(parts[1]);
+                int currentPhoto = Integer.parseInt(parts[2]);
+                _commandHandler.handleCarModelsPagination(chatId, messageId, brandName, currentModel, currentPhoto - 1);
+            } else if (callbackData.startsWith("car_photo_next_")) {
+                String[] parts = callbackData.replace("car_photo_next_", "").split("_");
+                String brandName = parts[0];
+                int currentModel = Integer.parseInt(parts[1]);
+                int currentPhoto = Integer.parseInt(parts[2]);
+                _commandHandler.handleCarModelsPagination(chatId, messageId, brandName, currentModel, currentPhoto + 1);
+            } else if (callbackData.equals("back_to_automobiles")) {
+                _commandHandler.handleBackToAutomobiles(chatId, messageId);
             }
         }
     }

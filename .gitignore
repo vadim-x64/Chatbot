@@ -43,8 +43,5 @@ build/
 # files
 guide.txt
 
-# json phrases
+# json
 src/main/resources/json
-
-# assets
-src/main/resources/images
