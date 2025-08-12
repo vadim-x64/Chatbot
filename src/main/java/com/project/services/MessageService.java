@@ -55,19 +55,7 @@ public class MessageService {
         }
     }
 
-    public void sendMessageWithInlineKeyboard(long chatId, String text, InlineKeyboardMarkup inlineKeyboardMarkup) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(String.valueOf(chatId));
-        sendMessage.setText(text);
-        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
-
-        try {
-            _telegramLongPollingBot.execute(sendMessage);
-        } catch (TelegramApiException ignored) {
-        }
-    }
-
-    public Message sendPhotoWithInlineKeyboard(long chatId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {
+    public void sendPhotoWithInlineKeyboard(long chatId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {
         SendPhoto sendPhoto = new SendPhoto();
         sendPhoto.setChatId(String.valueOf(chatId));
         sendPhoto.setPhoto(new InputFile(photoUrl));
@@ -75,11 +63,9 @@ public class MessageService {
         sendPhoto.setReplyMarkup(inlineKeyboardMarkup);
 
         try {
-            return _telegramLongPollingBot.execute(sendPhoto);
+            _telegramLongPollingBot.execute(sendPhoto);
         } catch (TelegramApiException ignored) {
         }
-
-        return null;
     }
 
     public void editMessageMedia(long chatId, int messageId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {

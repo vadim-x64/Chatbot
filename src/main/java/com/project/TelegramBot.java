@@ -40,7 +40,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                 switch (messageText) {
                     case "/start", "/restart" -> _commandHandler.handleStartCommand(chatId, user);
-                    case "Видатні інженери", "Основи", "Будова", "Історія", "Основи керування", "Техніка управління", "Принцип роботи", "Вступ", "Автомобілі" -> _commandHandler.handleCategoryCommand(chatId, messageText);
+                    case "Видатні інженери", "Основи", "Будова", "Історія", "Основи керування", "Техніка управління", "Принцип роботи", "Вступ" -> _commandHandler.handleCategoryCommand(chatId, messageText);
                     case "Повернутися назад" -> _commandHandler.handleReturnBackButton(chatId);
                     default -> _commandHandler.handleUnknownMessage(chatId);
                 }
@@ -68,31 +68,6 @@ public class TelegramBot extends TelegramLongPollingBot {
                 int currentPage = Integer.parseInt(parts[0]);
                 int currentPhoto = Integer.parseInt(parts[1]);
                 _commandHandler.handleEngineersPagination(chatId, messageId, currentPage, currentPhoto + 1);
-            } else if (callbackData.startsWith("auto_brand_")) {
-                int brandIndex = Integer.parseInt(callbackData.replace("auto_brand_", ""));
-                _commandHandler.handleAutomobileBrand(chatId, brandIndex, 0, 0);
-            } else if (callbackData.startsWith("auto_model_prev_")) {
-                String[] parts = callbackData.replace("auto_model_prev_", "").split("_");
-                int brandIndex = Integer.parseInt(parts[0]);
-                int currentModel = Integer.parseInt(parts[1]);
-                _commandHandler.handleAutomobileBrand(chatId, brandIndex, currentModel - 1, 0);
-            } else if (callbackData.startsWith("auto_model_next_")) {
-                String[] parts = callbackData.replace("auto_model_next_", "").split("_");
-                int brandIndex = Integer.parseInt(parts[0]);
-                int currentModel = Integer.parseInt(parts[1]);
-                _commandHandler.handleAutomobileBrand(chatId, brandIndex, currentModel + 1, 0);
-            } else if (callbackData.startsWith("auto_photo_prev_")) {
-                String[] parts = callbackData.replace("auto_photo_prev_", "").split("_");
-                int brandIndex = Integer.parseInt(parts[0]);
-                int currentModel = Integer.parseInt(parts[1]);
-                int currentPhoto = Integer.parseInt(parts[2]);
-                _commandHandler.handleAutomobileBrand(chatId, brandIndex, currentModel, currentPhoto - 1);
-            } else if (callbackData.startsWith("auto_photo_next_")) {
-                String[] parts = callbackData.replace("auto_photo_next_", "").split("_");
-                int brandIndex = Integer.parseInt(parts[0]);
-                int currentModel = Integer.parseInt(parts[1]);
-                int currentPhoto = Integer.parseInt(parts[2]);
-                _commandHandler.handleAutomobileBrand(chatId, brandIndex, currentModel, currentPhoto + 1);
             }
         }
     }
