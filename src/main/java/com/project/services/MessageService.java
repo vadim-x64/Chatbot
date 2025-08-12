@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
@@ -54,7 +55,19 @@ public class MessageService {
         }
     }
 
-    public void sendPhotoWithInlineKeyboard(long chatId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {
+    public void sendMessageWithInlineKeyboard(long chatId, String text, InlineKeyboardMarkup inlineKeyboardMarkup) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(String.valueOf(chatId));
+        sendMessage.setText(text);
+        sendMessage.setReplyMarkup(inlineKeyboardMarkup);
+
+        try {
+            _telegramLongPollingBot.execute(sendMessage);
+        } catch (TelegramApiException ignored) {
+        }
+    }
+
+    public Message sendPhotoWithInlineKeyboard(long chatId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {
         SendPhoto sendPhoto = new SendPhoto();
         sendPhoto.setChatId(String.valueOf(chatId));
         sendPhoto.setPhoto(new InputFile(photoUrl));
@@ -62,9 +75,11 @@ public class MessageService {
         sendPhoto.setReplyMarkup(inlineKeyboardMarkup);
 
         try {
-            _telegramLongPollingBot.execute(sendPhoto);
+            return _telegramLongPollingBot.execute(sendPhoto);
         } catch (TelegramApiException ignored) {
         }
+
+        return null;
     }
 
     public void editMessageMedia(long chatId, int messageId, String photoUrl, String caption, InlineKeyboardMarkup inlineKeyboardMarkup) {
