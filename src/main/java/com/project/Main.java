@@ -8,7 +8,9 @@ import java.net.InetSocketAddress;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "8080"));
+
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         server.createContext("/", exchange -> {
             String response = "Bot is running";
             exchange.sendResponseHeaders(200, response.length());
@@ -17,7 +19,7 @@ public class Main {
         });
         server.setExecutor(null);
         server.start();
-        //System.out.println("HTTP server started on port 8080");
+        System.out.println("HTTP server started on port " + port);
         try {
             BotInitializer botInitializer = new BotInitializer();
             botInitializer.initializeBot();

@@ -11,4 +11,5 @@ FROM eclipse-temurin:23-jre
 WORKDIR /app
 COPY --from=builder /app/target/chatbot.jar app.jar
 EXPOSE 8080
+ENV PORT=8080
 CMD ["java", "-jar", "app.jar"]
