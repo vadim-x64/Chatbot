@@ -37,9 +37,46 @@ public class Main {
             }
         });
 
+        server.createContext("/index.css", exchange -> {
+            try {
+                InputStream is = Main.class.getClassLoader().getResourceAsStream("main/index.css");
+                if (is != null) {
+                    byte[] cssBytes = is.readAllBytes();
+                    exchange.getResponseHeaders().set("Content-Type", "text/css; charset=UTF-8");
+                    exchange.sendResponseHeaders(200, cssBytes.length);
+                    exchange.getResponseBody().write(cssBytes);
+                    is.close();
+                } else {
+                    exchange.sendResponseHeaders(404, 0);
+                }
+            } catch (Exception e) {
+                exchange.sendResponseHeaders(500, 0);
+            } finally {
+                exchange.close();
+            }
+        });
+
+        server.createContext("/assets/icon.png", exchange -> {
+            try {
+                InputStream is = Main.class.getClassLoader().getResourceAsStream("assets/icon.png");
+                if (is != null) {
+                    byte[] imageBytes = is.readAllBytes();
+                    exchange.getResponseHeaders().set("Content-Type", "image/png");
+                    exchange.sendResponseHeaders(200, imageBytes.length);
+                    exchange.getResponseBody().write(imageBytes);
+                    is.close();
+                } else {
+                    exchange.sendResponseHeaders(404, 0);
+                }
+            } catch (Exception e) {
+                exchange.sendResponseHeaders(500, 0);
+            } finally {
+                exchange.close();
+            }
+        });
+
         server.setExecutor(null);
         server.start();
-        // System.out.println("HTTP server started on port " + port);
 
         try {
             BotInitializer botInitializer = new BotInitializer();
