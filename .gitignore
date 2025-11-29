@@ -39,9 +39,3 @@ build/
 
 # Environment variables
 .env
-
-# files
-guide.txt
-
-# json
-src/main/resources/json

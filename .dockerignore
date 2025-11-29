@@ -1,9 +1,0 @@
-.idea
-.mvn
-target
-src
-test
-.git
-.gitignore
-Dockerfile
-README.md

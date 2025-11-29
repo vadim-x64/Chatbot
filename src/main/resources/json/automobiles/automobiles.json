@@ -1,0 +1,227 @@
+{
+  "list": [
+    {
+      "name": "Bentley",
+      "models": [
+        {
+          "name": "3 Litre\n1919 - 1929\nВелика Британія",
+          "description": "Перший автомобіль марки Bentley. Був показаний публіці на Лондонському автосалоні у 1919 році. Містив рядний 4-циліндровий моноблок об'ємом 2996 см3 отримав інноваційну 16-клапанну систему з верхнім розподільним валом, алюмінієвими поршнями, подвійним запалюванням та двома карбюраторами. Він розганявся до 145 км/год, а потужність двигуна складала близько 70 кінських сил. Вага його майже 1800 кг. З 1921 по 1927 компанія випустила 1622 одиниць цієї моделі.\n",
+          "imageUrl": [
+            "https://www.frankdale.com/images/modelguide/bentley3litre/main.jpg?width=2000&height=1333",
+            "https://assets.carandclassic.com/uploads/cars/bentley/C1684845/1931-bentley-3-litre-65ba8699ba823.jpg?fit=crop&h=600&ixlib=php-4.1.0&q=85&w=800&s=eb169059e7218726a6e36c2ff5aec222",
+            "https://handh.blob.core.windows.net/stock/47489-0.jpg?v=63717887943000"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bugatti",
+      "models": [
+        {
+          "name": "Type 10\n1908 - 1908\nФранція",
+          "description": "Перший автомобіль марки Bugatti. Десяте за рахунком авто власної конструкції Етторе Бугатті, що заклало основу для майбутніх моделей. Автомобіль був оснащений рядним 4-циліндровим двигуном об'ємом 1131 см3 з верхнім розподільним валом, потужністю 3 кінські сили. За рахунок цього він розвивав швидкість 80 км/год. Вага складала близько 350 кг.\n",
+          "imageUrl": [
+            "https://admin.idaoffice.org/wp-content/uploads/2019/10/bugatti-type-10.jpg",
+            "https://media.fastestlaps.com/bugatti-type-10.jpg",
+            "https://live.staticflickr.com/8660/28050545700_bd48756b69_b.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Buick",
+      "models": [
+        {
+          "name": "Model B\n1903 - 1904\nСША",
+          "description": "Перший автомобіль марки Buick. Він мав 2.6-літровий рядний 2-циліндровий двигун з верхніми клапанами потужністю 21 кінські сили, 2-ступінчасту планетарну коробку передач та ланцюговий привід на задні колеса. За рік компанія побудувала 3 екземпляри, кожен з яких коштував по 950 доларів. Після переходу компанії в руки Вільяма Дюранта, продажі стрімко зросли. В 1905 році було продано вже 750 одиниць, в 1906 - 1400, а в 1907 фірма виготовила 4641 автомобіль.\n",
+          "imageUrl": [
+            "https://buickman2.wordpress.com/wp-content/uploads/2008/12/firstbuick.jpg",
+            "https://www.conceptcarz.com/images/Buick/1904_Buick-Model-D_Image-001-800.jpg",
+            "https://i.pinimg.com/736x/cf/06/21/cf0621ea8c5772425ef988322d8299a1.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cadillac",
+      "models": [
+        {
+          "name": "Model A\n1903 - 1904\nСША",
+          "description": "Перший автомобіль марки Cadillac. Вперше представлений на автосалоні в Нью-Йорку. Оснащувався 1-циліндровим мотором об'ємом 1609 см3, який видавав 10 кінських сил, а також 2-ступінчастою планетарною коробкою передач і ланцюговим приводом. На продаж пішло 2 версії авто: двомісний Runabout за ціною 750 доларів та чотиримісний Runabout Tonneau за 850 доларів. За 2 роки було збудовано 2497 одиниць.\n",
+          "imageUrl": [
+            "https://digitalcollections.detroitpubliclibrary.org/islandora/object/islandora%3A229653/datastream/IMAGE/view",
+            "https://media.goodingco.com/image/upload/c_fill,g_auto,q_88,w_1800/v1/Prod/Archives/AZ14%20%E2%80%94%20Scottsdale%20Auctions%202014/19._1903_Cadillac_Model_A_Tonneau_0104_alw8wr",
+            "https://img1.bonhams.com/image?src=Images/live/2007-09/24/7545007-1-1.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chevrolet",
+      "models": [
+        {
+          "name": "Series C Classic Six\n1911 - 1914\nСША",
+          "description": "Перший автомобіль марки Chevrolet. Це був престижний автомобіль вартістю 2500 доларів, оснащений рядним 6-циліндровим двигуном T-head потужністю 40 кінських сил і доступний тільки з одним типом кузова - 4-дверний 5-місний фаетон. За перший рік було продано 3000 одиниць, за другий - майже вдвічі більше.\n",
+          "imageUrl": [
+            "https://www.slashgear.com/img/gallery/everything-chevy-fans-should-know-about-the-series-c-classic-six/l-intro-1709570005.jpg",
+            "https://www.fitmycar.com/media/wysiwyg/21_1.jpg",
+            "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi3qgncP-HbqjfiH1TJ-IUdwZMAnW_TpN0wD-QYGh2ea7sbIDIpsryt70fwsH9nmxwdMAxTIMuYLGx0sbPlBPQZAknmpF2XBPhBVlIffPFFvrgLUJY0UTwzn92Z0Jm1toDW1og-/s1600/dtxmcclain.tumblr.com+oldest+running+chevy.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chrysler",
+      "models": [
+        {
+          "name": "Model B-70\n1924 - 1930\nСША",
+          "description": "Перший автомобіль марки Chrysler. Відносно недорогий автомобіль вищого класу, оснащений рядним 6-циліндровим двигуном об'ємом 3294 см3 і потужністю 68 кінських сил. Модель мала передове обладнання: гідравлічні барабанні гальма на всіх колесах, систему мастила під тиском, масляний і повітряний фільтри, алюмінієві поршні. За рік Крайслер продав 32000 одиниць Model B-70.\n",
+          "imageUrl": [
+            "https://smartcdn.gprod.postmedia.digital/driving/wp-content/uploads/2024/08/1924-Chrysler-Touring.jpg?w=800&crop=1&strip=all",
+            "https://bringatrailer.com/wp-content/uploads/2020/12/1924_chrysler_b-70_1607722180bf2e1b276f7ebd5DH__3086.jpg?fit=1424%2C949",
+            "https://www.swopemuseum.com/wp-content/uploads/2018/09/1924-Chrysler-70-B-Touring.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Citroen",
+      "models": [
+        {
+          "name": "Type A\n1919 - 1921\nФранція",
+          "description": "Перший автомобіль марки Citroen. Був представлений у березні 1919 року. Оснащений 1.3-літровим рядним 4-циліндровим двигуном потужністю 18 кінських сил, автомобіль мав електричні фари та стартер, суцільнометалеві диски, механічні барабанні гальма на задніх колесах та 3-ступінчасту механічну коробку передач без синхронізаторів. Вже до кінця 1919 року Сітроен продав понад 10000 машин, а до 1921 виробництво досягло 100 одиниць на день. Загалом було побудовано 24093 таких авто.\n",
+          "imageUrl": [
+            "https://www.club-citroen-france.club/medias/images/type-a.jpg",
+            "https://www.club-citroen-france.club/medias/images/1921-type-a-torpedo-sport-jaquet.jpg?v=1",
+            "https://www.largus.fr/images/styles/max_1300x1300/public/images/conservatoire-citroe-n-5.jpg?itok=vrFhW5cG"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dodge",
+      "models": [
+        {
+          "name": "Model 30-35\n1914 - 1916\nСША",
+          "description": "Перший автомобіль марки Dodge. Отримав прізвисько Old Betsy. Офіційно називався Dodge Model 30-35 і коштував 785 доларів - трохи дорожче, ніж Ford Model T. Оснащувався рядним 4-циліндровим двигуном L-head потужністю 35 кінських сил, 3-ступінчастою механічною коробкою передач та 12-вольтовою електричною системою з електричними фарами та стартером. Крім того, машина мала суцільнометалевий 4-дверний кузов Touring від ательє Budd. За перший рік було продано 249 екземплярів, але дилери стали масово укладати контракти з Dodge, і в 1915 році продажі склали вже 45053 одиниць.\n",
+          "imageUrl": [
+            "https://live.staticflickr.com/7166/6429026523_d1b8353529_b.jpg",
+            "https://i.ytimg.com/vi/gtlB-TFF_S4/maxresdefault.jpg",
+            "https://img.carswp.com/dodge/model-30/wallpapers_dodge_model-30_1914_1_b.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ferrari",
+      "models": [
+        {
+          "name": "125 Sport\n1947 - 1947\nІталія",
+          "description": "Перший автомобіль марки Ferrari. Представлений на автодромі у П'яченці. Як і у всіх наступних машинах, тризначне число у його назві позначало об'єм не всього двигуна, а лише одного циліндра. Відповідно загальний об'єм двигуна становив всього 1497 см3, що передбачалося правилами Гран-прі для компресорних болідів, а потужність – 118 кінських сил. В основу машини було покладено трубчасту раму з колісною базою 2420 мм. В оснащення входили 5-ступінчаста механічна коробка передач, незалежна передня підвіска на подвійних поперечних важелях і поперечній ресорі, провідний задній міст на поздовжніх ресорах і гідравлічні барабанні гальма на всіх колесах. Всього було побудовано 2 екземпляри Ferrari 125 S, обидва родстери: один з обтічним кузовом, інший з мотоциклетними крилами.\n",
+          "imageUrl": [
+            "https://i0.wp.com/deo.vvg.mybluehost.me/website_b13042cd/wp-content/uploads/2023/05/FIRST-FERRARI-1947-05-11-Cortese-Ferrari125.jpg?resize=944%2C629&ssl=1",
+            "https://cdn.ferrari.com/cms/network/media/img/resize/5d03aafd12e3b50c1510ab89?",
+            "https://i0.wp.com/www.proudmag.com/wp-content/uploads/2017/07/ferrari-125-s_ferrari_125s_drive_test-drive_driving_first-ferrari_sportscar.jpg?fit=1000%2C692&ssl=1"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ford",
+      "models": [
+        {
+          "name": "Quadricycle та Model T\n1908 - 1927\nСША",
+          "description": "Генрі Форд зібрав свій перший автомобіль, відомий як Quadricycle, в домашній майстерні у 1896 році. Це була примітивна 1-місна мотоколяска, оснащена 2-циліндровим двигуном потужністю 4 кінські сили, що працював на етанолі, 2-ступінчастою коробкою передач без заднього ходу. У 1898 році Форд вирішив зайнятися автомобільним бізнесом. А вже у 1903 році у Детройті було зареєстровано компанію Ford Motor Company. Першим автомобілем Форда стала Model A - типовий для свого часу транспортний засіб із 2-циліндровим мотором потужністю 8 кінських сил та максимальною швидкістю 45 км/год. Базова ціна становила 750 доларів. За 2 роки було продано 1750 одиниць.\n",
+          "imageUrl": [
+            "https://corporate.ford.com/articles/history/henry-fords-greatest-innovation-the-quadricycle/_jcr_content/root/responsivegrid/article_content_frag/par7/image_0_1_copy.coreimg.jpeg/1690568178534/henry-ford-with-quadricycle-at-greenfield-village-image-1640x920-d.jpeg",
+            "https://cdn.britannica.com/59/60459-050-FA449882/Model-T-1909.jpg",
+            "https://cdn.dealeraccelerate.com/cam/34/6970/484858/1920x1440/1926-ford-model-t-coupe"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Koenigsegg",
+      "models": [
+        {
+          "name": "CC8S\n2002 - 2004\nШвеція",
+          "description": "Перший автомобіль марки Koenigsegg. Після дебюту на Женевському автосалоні серійна версія надійшла у продаж за ціною 350000 доларів. На неї було встановлено 4.7-літровий компресорний двигун V8 потужністю 655 кінських сил, розроблений на основі двигуна Ford Modular. Всього було випущено 6 одиниць цієї моделі.\n",
+          "imageUrl": [
+            "https://upload.wikimedia.org/wikipedia/commons/7/7b/2015-03-03_Geneva_Motor_Show_3305_%28cropped%29.JPG",
+            "https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/images/car-reviews/first-drives/legacy/koenigsegg-cc850-at-pebble-beach-34.jpg",
+            "https://autogen.pl/cars/_mini/KoenigsCC8S-850x430.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lamborghini",
+      "models": [
+        {
+          "name": "350 GT\n1964 - 1966\nІталія",
+          "description": "Перший автомобіль марки Lamborghini. Дебютував на Женевському автосалоні 1964 року і виявився серйозним суперником Ferrari. Протягом наступних двох років було продано 120 одиниць.\n",
+          "imageUrl": [
+            "https://images.squarespace-cdn.com/content/v1/5caed8960cf57d49530e8c60/7e17f1f9-0e58-418f-babe-f25970c79cd3/art-mg-lamborghini350gt05.jpg",
+            "https://images.squarespace-cdn.com/content/v1/5caed8960cf57d49530e8c60/2298714c-f5c6-46c9-92cd-174bf1885872/art-mg-lamborghini350gt02.jpg",
+            "https://static.lambocars.com/wp-content/uploads/2020/12/350gt_158.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Maybach",
+      "models": [
+        {
+          "name": "W1\n1919 - 1919\nНімеччина",
+          "description": "Перший автомобіль марки Maybach. Був оснащений рядним 6-циліндровим двигуном потужністю 46 кінських сил і 5-місним кузовом. Представлений на Берлінському автосалоні 1919 року.\n",
+          "imageUrl": [
+            "https://i0.wp.com/theautomobilist.fr/wp-content/uploads/2021/04/Maybach-W1-Testwagen.1.jpg?resize=800,528&ssl=1",
+            "https://www.bibipedia.info/media/generations/3021/Maybach_Typ_w1_testwagen_1919_1.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mercedes-Benz",
+      "models": [
+        {
+          "name": "Patent-Motorwagen\n1885 - 1893\nНімеччина",
+          "description": "Перший автомобіль у світі. Карл Бенц запатентував свій епохальний винахід - триколісний автомобіль із бензиновим 4-тактним двигуном внутрішнього згоряння. Самохідний віз мав 1-циліндровий мотор об'ємом 958 см3 з водяним охолодженням, електричне запалювання, румпель замість керма, підвіску тільки задніх коліс, 1-ступінчасту трансмісію і ланцюговий привід. За потужності 600 Вт машина пересувалася зі швидкістю 16 км/год.\n",
+          "imageUrl": [
+            "https://upload.wikimedia.org/wikipedia/commons/7/71/1885Benz.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Motorwagen_Serienversion.jpg/1100px-Motorwagen_Serienversion.jpg",
+            "https://images.squarespace-cdn.com/content/v1/5e7918a4b1051f6e49dcfdb1/1668278410799-MMJD0VFRNI4T4XOHBOTT/8cwawhlo.jpeg"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Porsche",
+      "models": [
+        {
+          "name": "Egger-Lohner C.2 Phaeton або P1\n1898 - 1898\nНімеччина",
+          "description": "Перший електромобіль у світі та перший автомобіль марки Porsche. Він був створений у 1898 році. P1 виграв першу гонку електромобілів у Відні у 1899 році, обігнавши найближчого конкурента на 18 хвилин. P1 був оснащений електричним двигуном, виглядав як карета без коней, з рульовим колесом та шестеренчастим приводом на задню вісь. Мав 3 кінські сили та міг розвивати швидкість до 35,5 км/год. Запас ходу становив близько 50 км.\n",
+          "imageUrl": [
+            "https://media.drive.com.au/obj/tx_q:50,rs:auto:1920:1080:1/driveau/upload/cms/uploads/pkgixtjfxsbxlx0ufn2i",
+            "https://radical-mag.com/wp-content/uploads/2018/07/i_20140204-100921-645-e1530511479856.jpg",
+            "https://bmg-images.forward-publishing.io/2021/4/23/ea969cce-ab7b-4f83-be9a-5e73d46a9388.jpeg?auto=format"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Volkswagen",
+      "models": [
+        {
+          "name": "Жук (нім. Kafer, англ. Beetle)\n1938 - 2003\nНімеччина",
+          "description": "Перший автомобіль марки Volkswagen. Називався як Volkswagen Typ 1. Його розробив інженер Фердинанд Порше на замовлення адольфа гітлера наприкінці 30-х років, який пообіцяв забезпечити власним транспортом кожну німецьку родину. З середини 50-х років Volkswagen Beetle почав завойовувати ринки США та Великобританії, і його продажі стали зростати з кожним днем. У 1955 році компанія побудувала мільйонний Beetle, у 1967 - 10-мільйонний, у 1972 - 15-мільйонний, у 1981 - 20-мільйонний. Був оснащений опозитним 4-циліндровим двигуном повітряного охолодження, об'ємом 985 см3 та потужністю 25 кінських сил.\n",
+          "imageUrl": [
+            "https://sfcriga.com/images/others/sfcriga_ferdinand-porsche-and-his-creatures_photo06.jpg",
+            "https://www.transportworld.co.nz/assets/Uploads/Ferdinand-Porsche-Bill-Richardson-Transport-World-classic-cars-vintage-vehicles-Invercargill__FillMaxWzEyMDAsNjMwXQ.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/VW_K%C3%A4fer_Baujahr_1966.jpg/960px-VW_K%C3%A4fer_Baujahr_1966.jpg"
+          ]
+        }
+      ]
+    }
+  ]
+}
