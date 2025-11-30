@@ -1,6 +1,7 @@
 package com.project;
 
 import com.project.initializer.BotInitializer;
+import com.project.polling.KeepAliveService;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import com.sun.net.httpserver.HttpServer;
 
@@ -77,6 +78,10 @@ public class Main {
 
         server.setExecutor(null);
         server.start();
+
+        String appUrl = System.getenv().getOrDefault("APP_URL", "http://localhost:" + port);
+        KeepAliveService keepAlive = new KeepAliveService(appUrl);
+        keepAlive.start();
 
         try {
             BotInitializer botInitializer = new BotInitializer();
