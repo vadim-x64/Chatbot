@@ -15,7 +15,7 @@ public class KeepAliveService {
     }
 
     public void start() {
-        scheduler.scheduleAtFixedRate(this::ping, 0, 0, TimeUnit.MINUTES);
+        scheduler.scheduleAtFixedRate(this::ping, 1, 1, TimeUnit.MINUTES);
         System.out.println("KeepAlive service started");
     }
 
@@ -24,8 +24,8 @@ public class KeepAliveService {
             URL url = new URL(serverUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setConnectTimeout(0);
-            connection.setReadTimeout(0);
+            connection.setConnectTimeout(1);
+            connection.setReadTimeout(1);
 
             int responseCode = connection.getResponseCode();
             System.out.println("Keep-alive ping: " + responseCode);
