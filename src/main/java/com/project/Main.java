@@ -19,7 +19,7 @@ public class Main {
             try {
                 InputStream is = Main.class.getResourceAsStream("/main/index.html");
                 if (is == null) {
-                    String fallback = "<html><body><h1>Бот працює!</h1><a href='https://t.me/vodiydrivingbot'>Перейти</a></body></html>";
+                    String fallback = "<html><body><h1>Бот працює!</h1><a href='https://t.me/vodiydrivingbot'>Запустити</a></body></html>";
                     exchange.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
                     exchange.sendResponseHeaders(200, fallback.getBytes(StandardCharsets.UTF_8).length);
                     exchange.getResponseBody().write(fallback.getBytes(StandardCharsets.UTF_8));
